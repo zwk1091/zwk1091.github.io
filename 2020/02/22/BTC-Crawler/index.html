@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Zhu Wenkun</title>
+  <title>BTC_Crawler | Zhu Wenkun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Zhu Wenkun">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="首先需要从AICOIN网站爬取Klinedata 由于使用的是动态数据，爬取起来会比较麻烦 以网页https:&#x2F;&#x2F;www.aicoin.cn&#x2F;chart&#x2F;binance_ethbtc 为例，按F12 , 在network 里面找到Headers信息：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BTC_Crawler">
+<meta property="og:url" content="http://yoursite.com/2020/02/22/BTC-Crawler/index.html">
 <meta property="og:site_name" content="Zhu Wenkun">
+<meta property="og:description" content="首先需要从AICOIN网站爬取Klinedata 由于使用的是动态数据，爬取起来会比较麻烦 以网页https:&#x2F;&#x2F;www.aicoin.cn&#x2F;chart&#x2F;binance_ethbtc 为例，按F12 , 在network 里面找到Headers信息：">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/img/klinedataHeader.png">
+<meta property="og:image" content="http://yoursite.com/img/klinedata.png">
+<meta property="og:image" content="http://yoursite.com/img/btcExcel.png">
+<meta property="article:published_time" content="2020-02-22T08:18:52.000Z">
+<meta property="article:modified_time" content="2020-02-22T08:46:32.612Z">
 <meta property="article:author" content="Zhu Wenkun">
+<meta property="article:tag" content="技术">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/img/klinedataHeader.png">
   
     <link rel="alternative" href="/atom.xml" title="Zhu Wenkun" type="application/atom+xml">
   
@@ -142,36 +151,77 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-BTC-Crawler" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      BTC_Crawler
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/22/BTC-Crawler/" class="archive-article-date">
+
+        
+        <a href="/2020/02/22/BTC-Crawler/" class="archive-article-date">
   	<time datetime="2020-02-22T08:18:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-22</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/22/BTC-Crawler/">BTC_Crawler</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先需要从AICOIN网站爬取Klinedata</p>
+<p>由于使用的是动态数据，爬取起来会比较麻烦</p>
+<p>以网页<a href="https://www.aicoin.cn/chart/binance_ethbtc" target="_blank" rel="noopener">https://www.aicoin.cn/chart/binance_ethbtc</a></p>
+<p>为例，按F12 , 在network 里面找到Headers信息：</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
+<p><img src="../../../../img/klinedataHeader.png" alt=""></p>
+<p>需要使用 requests 包来模拟浏览器的行为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">requestData = &#123;</span><br><span class="line">        <span class="string">'symbol'</span>: <span class="string">'ethbtc:okex'</span>,</span><br><span class="line">        <span class="string">'period'</span>: <span class="string">'720'</span>,</span><br><span class="line">        <span class="string">'open_time'</span>: <span class="string">'24'</span>,</span><br><span class="line">        <span class="string">'type'</span>: <span class="string">'1'</span></span><br><span class="line">    &#125;</span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'Host'</span>: <span class="string">'www.aicoin.cn'</span>,</span><br><span class="line">        <span class="string">'Referer'</span>: <span class="string">'https://www.aicoin.cn/chart/binance_ethbtc'</span>,</span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36'</span>,</span><br><span class="line">        <span class="string">'X-Requested-With'</span>: <span class="string">'XMLHttpRequest'</span>,</span><br><span class="line">        <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>,</span><br><span class="line">        <span class="string">'Cookie'</span>: <span class="string">'cookie from browser'</span></span><br><span class="line">        <span class="comment"># 需要登陆后捕获cookie并调用</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">response = requests.post(url, headers=headers, data=requestData)</span><br></pre></td></tr></table></figure>
+
+<p>注意不能爬取过快，否则会触发反扒机制，可以简单加一个sleep：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time.sleep(random.random() * 3)</span><br></pre></td></tr></table></figure>
+
+<p>获取到klinedata：</p>
+<p><img src="../../../../img/klinedata.png" alt=""></p>
+<p>使用talib包来计算技术指标：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CCI &#x3D; ta.CCI(dataHigh, dataLow, dataClose, timeperiod&#x3D;20)</span><br></pre></td></tr></table></figure>
+
+<p>输出到excel文件：</p>
+<p><img src="../../../../img/btcExcel.png" alt=""></p>
+<p>完整代码见：</p>
+<p><a href="https://github.com/zwk1091/BTC_Crawler" target="_blank" rel="noopener">https://github.com/zwk1091/BTC_Crawler</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -183,142 +233,55 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/17/VSCodeUse/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用vs code 运行与调试c++代码</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/17/VSCodeUse/" class="archive-article-date">
-  	<time datetime="2019-10-17T15:49:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
-</a>
-        </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/17/VSCodeUse/">使用vs code 运行与调试c++代码</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/21/myPostgraduate/" class="archive-article-date">
-  	<time datetime="2019-02-21T15:41:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/21/myPostgraduate/">我的考研历程</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/04/unityGame/" class="archive-article-date">
-  	<time datetime="2017-03-04T07:35:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/04/unityGame/">unity3d 入门——实现井字棋</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -341,8 +304,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
